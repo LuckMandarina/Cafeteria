@@ -1,0 +1,144 @@
+:root {
+    --primary-color: #c7a17a;
+    --background-color: #f9f5f0;
+    --dark-color: #151515;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body.Sign-in-body {
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Header */
+.backbuttom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem 0;
+}
+
+.go-back a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--dark-color);
+    font-size: 14px;
+}
+
+.go-back i {
+    font-size: 20px;
+}
+
+/* Contenedor principal */
+.conteiner-sign-in {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 16px;
+    width: 350px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Header */
+.sign-in-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Formulario */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: var(--dark-color);
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(199, 161, 122, 0.5);
+}
+
+/* Botón */
+.btn-enviar {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-enviar:hover {
+    background-color: #b08d68;
+    transform: scale(1.02);
+}
+
+/* Divider */
+.sign-in-with {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.sign-in-divider {
+    display: block;
+    margin-bottom: 10px;
+    color: #888;
+    font-size: 14px;
+}
+
+/* Botón Google */
+.google {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: var(--dark-color);
+    transition: 0.3s;
+}
+
+.google:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+
+
+
+/* ********************************** */
+/*       MEDIA QUERIES -- 400px       */
+/* ********************************** */
+
+@media (max-width: 400px) {
+    .conteiner-sign-in {
+        width: 90%;
+        padding: 30px 20px;
+    }
+}

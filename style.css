@@ -964,15 +964,6 @@ html {
 	cursor: pointer;
 }
 
-.backbuttom {
-	padding: 2rem 0;
-	background-color: var(--primary-color);
-}
-
-.Sign-in-body {
-	background-color: var(--background-color);
-}
-
 
 /* ********************************** */
 /*       MEDIA QUERIES -- 768px       */

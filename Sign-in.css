@@ -22,16 +22,17 @@ body.Sign-in-body {
 
 /* Header */
 .backbuttom {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5rem 0;
+    padding: 1rem 0;
 }
 
 .go-back a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
     text-decoration: none;
     color: var(--dark-color);
     font-size: 14px;
@@ -39,21 +40,45 @@ body.Sign-in-body {
 
 .go-back i {
     font-size: 20px;
+    transition: all 0.4s ease;
+}
+
+.go-back i:hover {
+    transition: all 0.4s ease;
+    transform: translateY(-3px);
 }
 
 /* Contenedor principal */
 .conteiner-sign-in {
     background: white;
-    padding: 40px 30px;
+    padding: 20px 30px;
     border-radius: 16px;
     width: 350px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 /* Header */
 .sign-in-header {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
+
+}
+
+.sign-in-header i {
+    color: var(--background-color);
+    font-size: 2rem;
+    /* El círculo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 50px;          /* tamaño del círculo */
+    height: 50px;
+    border-radius: 50%;   /* ← esto lo convierte en círculo */
+    background-color: var(--primary-color);  /* color del fondo */
+
 }
 
 /* Formulario */
@@ -115,21 +140,51 @@ body.Sign-in-body {
 
 /* Botón Google */
 .google {
-    display: inline-block;
-    padding: 10px 15px;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    max-width: max-content;
+    padding: 10px;
     border-radius: 10px;
     border: 1px solid #ddd;
     text-decoration: none;
     color: var(--dark-color);
     transition: 0.3s;
+    gap: 1rem;
 }
+
+.google img {
+    float: left;
+    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+    gap: 1rem
+}
+
+.google p {
+    font-size: 1rem;
+}
+
 
 .google:hover {
     background-color: var(--primary-color);
     color: white;
 }
 
+.Sign-In {
+    padding: 1rem 0;
+}
 
+.Sign-In a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+    color: #43338a; 
+}
+
+.Sign-In a:hover {
+    transition: all 0.3s ease;
+    color: #4d33c2; 
+}
 
 
 /* ********************************** */

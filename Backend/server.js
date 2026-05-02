@@ -46,3 +46,29 @@ app.listen(3000, () => {
     console.log("Servidor corriendo en http://localhost:3000");
 });
 
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body  // coincide con name="username"
+
+  if (!username || !password) {
+    return res.status(400).json({ error: 'Campos obligatorios' })
+  }
+
+  // Busca por email O por nombre de usuario
+  const [rows] = await connection.query(
+    'SELECT * FROM users WHERE email = ? OR username = ?',
+    [username, username]  // mismo valor, dos columnas
+  )
+
+  if (rows.length === 0) {
+    return res.status(401).json({ error: 'Usuario no encontrado' })
+  }
+
+  const user = rows[0]
+  const match = await bcrypt.compare(password, user.password_hash)
+
+  if (!match) {
+    return res.status(401).json({ error: 'Contraseña incorrecta' })
+  }
+
+  res.status(200).json({ message: 'Login exitoso', userId: user.id })
+})

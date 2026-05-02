@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Baristas</title>
+    <link rel="stylesheet" href="Sign-in.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="Sign-in-body">
+    <div class="go-back">
+        <a href="/index.html">
+            <i class="fa-solid fa-circle-xmark"></i>
+        </a>
+    </div>
+    <header class="backbuttom">
+        <h1>Registrate</h1>
+    </header>
+
+    <div class="conteiner-sign-in">
+
+        <div class="sign-in-header">
+            <!-- Icono -->
+                <i class="fa-solid fa-user"></i>
+        </div>
+
+        <div class="sign-in-form-section">
+
+            <form class="contact-form" id="contact-form">
+
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input type="text" id="username" name="username" placeholder="Ingrese su usuario" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" data-lang="es">Correo electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="Ingrese su correo electronico" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" data-lang="es">Contraseña</label>
+                    <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
+
+                </div>
+
+
+
+                <button type="submit" class="btn-enviar" id="btn-enviar">Registrarse</button>
+
+            </form>
+
+        </div>
+
+        <div class="sign-in-with">
+            <span class="sign-in-divider">or</span>
+            <a href="#" class="google"><img src="/img/googleiconregisterlogin.png" alt="Google"><p>Registrarse con Google</p></a>
+        </div>
+    </div>
+
+    <div class="Sign-In">
+        <p class="Redireccion">Ya tienes una cuenta? <a href="/Sign-in.html" class="Sign-in-option">Inicia sesión</a></p>
+    </div>
+
+    <script>
+        function validateLoginForm(email, password) {
+            if (!email || !password) return "Campo obligatorio";
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) return "Email inválido";
+
+            if (password.length < 8) return "Mínimo 8 caracteres";
+
+            return null;
+        }
+
+        document.getElementById("contact-form").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const username = document.getElementById("username").value;
+
+            const error = validateLoginForm(email, password);
+
+            if (error) {
+                alert(error);
+                return;
+            }
+
+            // 🔥 AQUÍ envías al backend
+            const res = await fetch("http://localhost:3000/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username, email, password })
+            });
+
+            const result = await res.json();
+            alert(result.message);
+        });
+    </script>
+
+</body>
+
+</html>

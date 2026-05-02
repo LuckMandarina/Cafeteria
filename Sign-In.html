@@ -12,20 +12,20 @@
 </head>
 
 <body class="Sign-in-body">
+    <div class="go-back">
+        <a href="/index.html">
+            <i class="fa-solid fa-circle-xmark"></i>
+        </a>
+    </div>
     <header class="backbuttom">
-        <div class="go-back">
-            <a href="/index.html">
-                
-                <h1>Registrate</h1>
-                <i class="fa-solid fa-circle-xmark"></i>
-            </a>
-        </div>
+        <h1>Inicia sesión</h1>
     </header>
 
     <div class="conteiner-sign-in">
 
         <div class="sign-in-header">
             <!-- Icono -->
+            <i class="fa-solid fa-user"></i>
         </div>
 
         <div class="sign-in-form-section">
@@ -34,12 +34,7 @@
 
                 <div class="form-group">
                     <label for="username">Usuario</label>
-                    <input type="text" id="username" name="username" placeholder="Ingrese su usuario" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email" data-lang="es">Correo electrónico</label>
-                    <input type="email" id="email" name="email" placeholder="Ingrese su correo electronico" required>
+                    <input type="text" id="username" name="username" placeholder="Ingrese su Usuario" required>
                 </div>
 
                 <div class="form-group">
@@ -50,7 +45,7 @@
 
 
 
-                <button type="submit" class="btn-enviar" id="btn-enviar">Registrarse</button>
+                <button type="submit" class="btn-enviar" id="btn-enviar">Iniciar sesión</button>
 
             </form>
 
@@ -58,54 +53,38 @@
 
         <div class="sign-in-with">
             <span class="sign-in-divider">or</span>
-            <a href="#" class="google">Registrarse con Google</a>
+            <a href="#" class="google"><img src="/img/googleiconregisterlogin.png" alt="Google">
+                <p>Inicia sesión con Google</p>
+            </a>
         </div>
     </div>
 
     <div class="Sign-In">
-        <a href="#" class="Sign-in-option"></a>
+        <p class="Redireccion">No tienes una cuenta? <a href="/Register.html" class="Sign-in-option">Registrate</a></p>
     </div>
 
     <script>
-        function validateLoginForm(email, password) {
-            if (!email || !password) return "Campo obligatorio";
+        // SOLO esto va aquí — es código del navegador
+        document.getElementById('contact-form').addEventListener('submit', async (e) => {
+            e.preventDefault()
+            const username = document.getElementById('username').value.trim()
+            const password = document.getElementById('password').value
 
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) return "Email inválido";
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            })
 
-            if (password.length < 8) return "Mínimo 8 caracteres";
+            const data = await response.json()
 
-            return null;
-        }
-
-        document.getElementById("contact-form").addEventListener("submit", async function (e) {
-            e.preventDefault();
-
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value;
-            const username = document.getElementById("username").value;
-
-            const error = validateLoginForm(email, password);
-
-            if (error) {
-                alert(error);
-                return;
+            if (response.ok) {
+                window.location.href = '/dashboard'
+            } else {
+                alert(data.error || 'Credenciales incorrectas')
             }
-
-            // 🔥 AQUÍ envías al backend
-            const res = await fetch("http://localhost:3000/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ username, email, password })
-            });
-
-            const result = await res.json();
-            alert(result.message);
-        });
+        })
     </script>
-
 </body>
 
 </html>
